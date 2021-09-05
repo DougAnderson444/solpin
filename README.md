@@ -1,6 +1,6 @@
 # SOL-PIN
 
-Pin Web3 data using Solana. Publish and update using IPFS and Arweave style ecosystems with ease.
+Pin Web3 data using [Solana](https://solana.com/). Publish and update using [IPFS](https://ipfs.io/) and [Arweave](https://www.arweave.org/) style ecosystems with ease.
 
 Goal is to integrate this product into Web3 Repl so people can update their Web3 apps easily.
 
