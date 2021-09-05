@@ -1,7 +1,14 @@
-<script lang="ts">
+<script>
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
 </script>
+
+<!-- src/routes/__layout.svelte -->
+<svelte:head>
+	<script>
+		global = globalThis; // for solana web3 repo
+	</script>
+</svelte:head>
 
 <Header />
 
@@ -10,7 +17,7 @@
 </main>
 
 <footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+	<p>(C) Copyright 2021 Doug Anderson aka @DougAnderson444</p>
 </footer>
 
 <style>
@@ -33,9 +40,9 @@
 		padding: 40px;
 	}
 
-	footer a {
+	/* footer a {
 		font-weight: bold;
-	}
+	} */
 
 	@media (min-width: 480px) {
 		footer {
