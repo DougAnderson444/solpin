@@ -22,22 +22,29 @@
 	<h1>About this app</h1>
 
 	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
-
-	<!-- TODO lose the @next! -->
-	<pre>npm init svelte@next</pre>
-
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
+		The problem with Web3 data is it's usually immutable, like when you save to IPFS or Arweave --
+		once the data is saved, you get a Transaction ID (or IPFS Content ID) back and that's it.
 	</p>
 
 	<p>
-		The <a href="/todos">TODOs</a> page illustrates SvelteKit's data loading and form handling. Try using
-		it with JavaScript disabled!
+		What if you want to update your website? You'd have to refresh the Tx ID every time? Pfft, I
+		don't think so.
+	</p>
+
+	<p>
+		Solutions like IPNS don't really work well. P2P attempts such as
+		[HyPNS](https://github.com/DougAnderson444/hypns) require a server to be kept online to pin the
+		data.
+	</p>
+
+	<p>But Solana costs pennies for mutable posts, so why not just make life easy and use Solana?</p>
+
+	<p>What if you want to hand out a link to someone, that points to the latest updates?</p>
+
+	<p>
+		That's what SOLPIN solves. It gives you a permanent but mutable link on Solana that points to
+		the latest version of your saved Web3 data. Want an old version? Just go back in the SOLPIN
+		transaction history and grab it.
 	</p>
 </div>
 
