@@ -1,6 +1,15 @@
 <script>
+	import { onMount } from 'svelte';
+
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
+
+	onMount(async () => {
+		// setup some globals
+		import('buffer').then((Buffer) => {
+			global.Buffer = Buffer.Buffer;
+		});
+	});
 </script>
 
 <!-- src/routes/__layout.svelte -->

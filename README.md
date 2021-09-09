@@ -6,7 +6,7 @@ The problem with Web3 data is it's usually immutable, like when you save to IPFS
 
 What if you want to update your website? You'd have to refresh the Tx ID every time? Pfft, I don't think so.
 
-Solutions like IPNS don't really work well. P2P attempts such as [HyPNS](https://github.com/DougAnderson444/hypns) require a server to be kept online to pin the data.
+Solutions like IPNS don't really work well. P2P attempts such as [HyPNS](https://github.com/DougAnderson444/hypns) require peers or a server to be online in order to pin the data updates while you are offline.
 
 But Solana costs pennies for mutable posts, so why not just make life easy and use Solana?
 

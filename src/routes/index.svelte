@@ -3,8 +3,6 @@
 </script>
 
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
-
 	const tweetUrl =
 		'https://twitter.com/intent/tweet?url=' +
 		'https://peerpiper.io' +

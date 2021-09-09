@@ -1,6 +1,15 @@
 <script>
 	// load the component
-	import Solpin from '$lib/Solpin.svelte';
+	import Solpin from '$lib/Solpin/index.svelte';
+	import { onMount } from 'svelte';
+
+	let mounted = false;
+
+	onMount(() => {
+		mounted = true;
+	});
 </script>
 
-<Solpin />
+{#if mounted}
+	<svelte:component this={Solpin} />
+{/if}

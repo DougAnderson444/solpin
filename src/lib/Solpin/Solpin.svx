@@ -1,0 +1,30 @@
+
+---
+layout: article
+
+---
+
+<script>
+	import CheckBalance from './checkBalance.svelte'
+	export let soldeets
+
+	let data = 'This is the data we are going to save to Solana';
+
+	// Develop program template code
+	// Deploy a template program for the client in the browser
+	// Save the Tx ID to save
+	// Program updates the saved value if the owner's key is used
+	// Program gives latest value upon query
+	// App shows tx history of past saved values
+
+	// Buttons / Steps
+	// Create a new Paste (aka deploy a new copy of a program)
+	// Load an existing Paste
+	// Update a Paste
+</script>
+
+### Account {soldeets?.address}
+
+**Balance** *<CheckBalance {soldeets} />*
+
+{data}
