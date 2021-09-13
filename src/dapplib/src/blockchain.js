@@ -25,7 +25,6 @@ export class Blockchain {
 			// resultData = layout.decode(Buffer.from(accountInfo.data));
 			// console.log({ resultData });
 			resultData = Buffer.from(accountInfo.data).toString().substr(4, 84).trim();
-			console.log({ resultData });
 		}
 
 		return {
@@ -45,8 +44,6 @@ export class Blockchain {
 			bs58.decode(env.config.programInfo.programAccounts['payer'].privateKey)
 		);
 
-		console.log({ payer });
-
 		let txReceipt = await solana.submitTransaction({
 			keys: [
 				{
@@ -55,6 +52,11 @@ export class Blockchain {
 					),
 					isSigner: false,
 					isWritable: true
+				},
+				{
+					pubkey: payer.publicKey,
+					isSigner: true, // the signers we pass in include the private keys and can actually sign
+					isWritable: false
 				}
 			],
 			payer,

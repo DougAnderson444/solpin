@@ -26,7 +26,6 @@ export default class Solana {
 
 	static getSigningAccount(privateKey) {
 		const kp = Keypair.fromSecretKey(privateKey);
-		console.log({ kp });
 		return kp;
 	}
 
@@ -146,40 +145,54 @@ export default class Solana {
 		let programId = programAccount.publicKey;
 
 		// Create all the state accounts
-		let transactionAccounts = [payerAccount];
+		let signers = [payerAccount];
 		let transaction = new Transaction();
 		for (let l = 0; l < dataLayouts.length; l++) {
-			let stateAccount = new Keypair();
-			transactionAccounts.push(stateAccount);
+			// TODO: push/pull seed from program?
+			let seed = 'same seed in rust & javascript';
 
-			console.log({ dataLayouts });
+			let stateAccount = await PublicKey.createWithSeed(payerAccount.publicKey, seed, programId);
 
-			console.log(dataLayouts[l].layout);
+			// signers.push(stateAccount); // stateAccount isn't a signer
+
 			let space = dataLayouts[l].layout.span;
-
-			console.log({ space });
 
 			let lamports = await self.connection.getMinimumBalanceForRentExemption(
 				dataLayouts[l].layout.span
 			);
+
 			transaction.add(
-				SystemProgram.createAccount({
-					fromPubkey: payerAccount.publicKey,
-					newAccountPubkey: stateAccount.publicKey,
-					lamports,
-					space,
-					programId
+				SystemProgram.createAccountWithSeed({
+					basePubkey: payerAccount.publicKey, // : PublicKey
+					// Base public key to use to derive the address of the created account. Must be the same as the base key used to create newAccountPubkey
+
+					fromPubkey: payerAccount.publicKey, // : PublicKey
+					// The account that will transfer lamports to the created account
+
+					lamports, // : number
+					// Amount of lamports to transfer to the created account
+
+					newAccountPubkey: stateAccount, // : PublicKey
+					// Public key of the created account. Must be pre-calculated with PublicKey.createWithSeed()
+
+					programId, // : PublicKey
+					// Public key of the program to assign as the owner of the created account
+
+					seed, // : string
+					// Seed to use to derive the address of the created account. Must be the same as the seed used to create newAccountPubkey
+
+					space // : number
+					// Amount of space in bytes to allocate to the created account
 				})
 			);
 
 			deployAccounts[dataLayouts[l].name] = {
-				publicKey: stateAccount.publicKey.toBase58(),
-				privateKey: bs58.encode(stateAccount.secretKey),
+				publicKey: stateAccount.toBase58(),
 				lamports
 			};
 		}
 
-		await sendAndConfirmTransaction(self.connection, transaction, transactionAccounts, {
+		await sendAndConfirmTransaction(self.connection, transaction, signers, {
 			commitment: 'singleGossip',
 			preflightCommitment: 'singleGossip'
 		});
