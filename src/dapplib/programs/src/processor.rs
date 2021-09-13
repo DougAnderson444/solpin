@@ -84,7 +84,7 @@ impl Processor {
 	let iter = memo.chars();
 	let slice = iter.as_str();
 	let mut txt_final = String::from(slice);
-	txt_final.truncate(996);
+	txt_final.truncate(76);
 	msg.txt = txt_final;
 
 	msg.pack(&mut data);
