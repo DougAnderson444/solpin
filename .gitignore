@@ -4,3 +4,4 @@ node_modules
 /.svelte-kit
 /package
 src/dapplib/src/dapp-config.json
+src/dapplib/test-ledger/
